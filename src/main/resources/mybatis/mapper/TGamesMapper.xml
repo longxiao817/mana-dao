@@ -1,368 +1,388 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.mgt.manager.dao.TGamesMapper">
-  <resultMap id="BaseResultMap" type="com.atguigu.mgt.manager.bean.TGames">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="downloadNum" jdbcType="INTEGER" property="downloadnum" />
-    <result column="score" jdbcType="DOUBLE" property="score" />
-    <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="downloadUrl" jdbcType="VARCHAR" property="downloadurl" />
-    <result column="gameupdate" jdbcType="VARCHAR" property="gameupdate" />
-    <result column="size" jdbcType="INTEGER" property="size" />
-    <result column="version" jdbcType="VARCHAR" property="version" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="imgUrls" jdbcType="VARCHAR" property="imgurls" />
-    <result column="tab" jdbcType="VARCHAR" property="tab" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, name, type, downloadNum, score, imgUrl, introduce, downloadUrl, gameupdate, size, 
-    version, status, url, imgUrls, tab
-  </sql>
-  <select id="selectByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from t_games
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_games
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_games
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample">
-    delete from t_games
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.atguigu.mgt.manager.bean.TGames">
-    insert into t_games (id, name, type, 
-      downloadNum, score, imgUrl, 
-      introduce, downloadUrl, gameupdate, 
-      size, version, status, 
-      url, imgUrls, tab)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{downloadnum,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, #{imgurl,jdbcType=VARCHAR}, 
-      #{introduce,jdbcType=VARCHAR}, #{downloadurl,jdbcType=VARCHAR}, #{gameupdate,jdbcType=VARCHAR}, 
-      #{size,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{url,jdbcType=VARCHAR}, #{imgurls,jdbcType=VARCHAR}, #{tab,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.atguigu.mgt.manager.bean.TGames">
-    insert into t_games
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="downloadnum != null">
-        downloadNum,
-      </if>
-      <if test="score != null">
-        score,
-      </if>
-      <if test="imgurl != null">
-        imgUrl,
-      </if>
-      <if test="introduce != null">
-        introduce,
-      </if>
-      <if test="downloadurl != null">
-        downloadUrl,
-      </if>
-      <if test="gameupdate != null">
-        gameupdate,
-      </if>
-      <if test="size != null">
-        size,
-      </if>
-      <if test="version != null">
-        version,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="url != null">
-        url,
-      </if>
-      <if test="imgurls != null">
-        imgUrls,
-      </if>
-      <if test="tab != null">
-        tab,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadnum != null">
-        #{downloadnum,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
-        #{score,jdbcType=DOUBLE},
-      </if>
-      <if test="imgurl != null">
-        #{imgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="introduce != null">
-        #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadurl != null">
-        #{downloadurl,jdbcType=VARCHAR},
-      </if>
-      <if test="gameupdate != null">
-        #{gameupdate,jdbcType=VARCHAR},
-      </if>
-      <if test="size != null">
-        #{size,jdbcType=INTEGER},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="imgurls != null">
-        #{imgurls,jdbcType=VARCHAR},
-      </if>
-      <if test="tab != null">
-        #{tab,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample" resultType="java.lang.Long">
-    select count(*) from t_games
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update t_games
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=VARCHAR},
-      </if>
-      <if test="record.downloadnum != null">
-        downloadNum = #{record.downloadnum,jdbcType=INTEGER},
-      </if>
-      <if test="record.score != null">
-        score = #{record.score,jdbcType=DOUBLE},
-      </if>
-      <if test="record.imgurl != null">
-        imgUrl = #{record.imgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.introduce != null">
-        introduce = #{record.introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="record.downloadurl != null">
-        downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.gameupdate != null">
-        gameupdate = #{record.gameupdate,jdbcType=VARCHAR},
-      </if>
-      <if test="record.size != null">
-        size = #{record.size,jdbcType=INTEGER},
-      </if>
-      <if test="record.version != null">
-        version = #{record.version,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.url != null">
-        url = #{record.url,jdbcType=VARCHAR},
-      </if>
-      <if test="record.imgurls != null">
-        imgUrls = #{record.imgurls,jdbcType=VARCHAR},
-      </if>
-      <if test="record.tab != null">
-        tab = #{record.tab,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update t_games
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
-      downloadNum = #{record.downloadnum,jdbcType=INTEGER},
-      score = #{record.score,jdbcType=DOUBLE},
-      imgUrl = #{record.imgurl,jdbcType=VARCHAR},
-      introduce = #{record.introduce,jdbcType=VARCHAR},
-      downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
-      gameupdate = #{record.gameupdate,jdbcType=VARCHAR},
-      size = #{record.size,jdbcType=INTEGER},
-      version = #{record.version,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      url = #{record.url,jdbcType=VARCHAR},
-      imgUrls = #{record.imgurls,jdbcType=VARCHAR},
-      tab = #{record.tab,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.mgt.manager.bean.TGames">
-    update t_games
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadnum != null">
-        downloadNum = #{downloadnum,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
-        score = #{score,jdbcType=DOUBLE},
-      </if>
-      <if test="imgurl != null">
-        imgUrl = #{imgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="introduce != null">
-        introduce = #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadurl != null">
-        downloadUrl = #{downloadurl,jdbcType=VARCHAR},
-      </if>
-      <if test="gameupdate != null">
-        gameupdate = #{gameupdate,jdbcType=VARCHAR},
-      </if>
-      <if test="size != null">
-        size = #{size,jdbcType=INTEGER},
-      </if>
-      <if test="version != null">
-        version = #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="url != null">
-        url = #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="imgurls != null">
-        imgUrls = #{imgurls,jdbcType=VARCHAR},
-      </if>
-      <if test="tab != null">
-        tab = #{tab,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.atguigu.mgt.manager.bean.TGames">
-    update t_games
-    set name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      downloadNum = #{downloadnum,jdbcType=INTEGER},
-      score = #{score,jdbcType=DOUBLE},
-      imgUrl = #{imgurl,jdbcType=VARCHAR},
-      introduce = #{introduce,jdbcType=VARCHAR},
-      downloadUrl = #{downloadurl,jdbcType=VARCHAR},
-      gameupdate = #{gameupdate,jdbcType=VARCHAR},
-      size = #{size,jdbcType=INTEGER},
-      version = #{version,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      url = #{url,jdbcType=VARCHAR},
-      imgUrls = #{imgurls,jdbcType=VARCHAR},
-      tab = #{tab,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.atguigu.mgt.manager.bean.TGames">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="downloadNum" jdbcType="INTEGER" property="downloadnum" />
+		<result column="score" jdbcType="DOUBLE" property="score" />
+		<result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+		<result column="introduce" jdbcType="VARCHAR" property="introduce" />
+		<result column="downloadUrl" jdbcType="VARCHAR" property="downloadurl" />
+		<result column="gameupdate" jdbcType="VARCHAR" property="gameupdate" />
+		<result column="size" jdbcType="INTEGER" property="size" />
+		<result column="version" jdbcType="VARCHAR" property="version" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="url" jdbcType="VARCHAR" property="url" />
+		<result column="imgUrls" jdbcType="VARCHAR" property="imgurls" />
+		<result column="tab" jdbcType="VARCHAR" property="tab" />
+	</resultMap>
+	<select id="getAllGamesByUserId" resultMap="BaseResultMap">
+		SELECT *
+		FROM t_games
+		LEFT JOIN t_user_games ON t_games.`id` = t_user_games.`gameId`
+		LEFT JOIN t_users ON t_users.`user_id` = t_user_games.`userId`
+		WHERE t_users.`user_id` = #{userId}
+	</select>
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, name, type, downloadNum, score, imgUrl, introduce, downloadUrl,
+		gameupdate, size,
+		version, status, url, imgUrls, tab
+	</sql>
+	<select id="selectByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_games
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_games
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_games
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample">
+		delete from t_games
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.atguigu.mgt.manager.bean.TGames">
+		insert into t_games (id, name, type,
+		downloadNum, score, imgUrl,
+		introduce, downloadUrl, gameupdate,
+		size, version, status,
+		url, imgUrls, tab)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{downloadnum,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, #{imgurl,jdbcType=VARCHAR},
+		#{introduce,jdbcType=VARCHAR}, #{downloadurl,jdbcType=VARCHAR},
+		#{gameupdate,jdbcType=VARCHAR},
+		#{size,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{url,jdbcType=VARCHAR}, #{imgurls,jdbcType=VARCHAR},
+		#{tab,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.atguigu.mgt.manager.bean.TGames">
+		insert into t_games
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="downloadnum != null">
+				downloadNum,
+			</if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="imgurl != null">
+				imgUrl,
+			</if>
+			<if test="introduce != null">
+				introduce,
+			</if>
+			<if test="downloadurl != null">
+				downloadUrl,
+			</if>
+			<if test="gameupdate != null">
+				gameupdate,
+			</if>
+			<if test="size != null">
+				size,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="imgurls != null">
+				imgUrls,
+			</if>
+			<if test="tab != null">
+				tab,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="downloadnum != null">
+				#{downloadnum,jdbcType=INTEGER},
+			</if>
+			<if test="score != null">
+				#{score,jdbcType=DOUBLE},
+			</if>
+			<if test="imgurl != null">
+				#{imgurl,jdbcType=VARCHAR},
+			</if>
+			<if test="introduce != null">
+				#{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="downloadurl != null">
+				#{downloadurl,jdbcType=VARCHAR},
+			</if>
+			<if test="gameupdate != null">
+				#{gameupdate,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				#{size,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="imgurls != null">
+				#{imgurls,jdbcType=VARCHAR},
+			</if>
+			<if test="tab != null">
+				#{tab,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample"
+		resultType="java.lang.Long">
+		select count(*) from t_games
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_games
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.type != null">
+				type = #{record.type,jdbcType=VARCHAR},
+			</if>
+			<if test="record.downloadnum != null">
+				downloadNum = #{record.downloadnum,jdbcType=INTEGER},
+			</if>
+			<if test="record.score != null">
+				score = #{record.score,jdbcType=DOUBLE},
+			</if>
+			<if test="record.imgurl != null">
+				imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+			</if>
+			<if test="record.introduce != null">
+				introduce = #{record.introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="record.downloadurl != null">
+				downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
+			</if>
+			<if test="record.gameupdate != null">
+				gameupdate = #{record.gameupdate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.size != null">
+				size = #{record.size,jdbcType=INTEGER},
+			</if>
+			<if test="record.version != null">
+				version = #{record.version,jdbcType=VARCHAR},
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=INTEGER},
+			</if>
+			<if test="record.url != null">
+				url = #{record.url,jdbcType=VARCHAR},
+			</if>
+			<if test="record.imgurls != null">
+				imgUrls = #{record.imgurls,jdbcType=VARCHAR},
+			</if>
+			<if test="record.tab != null">
+				tab = #{record.tab,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_games
+		set id = #{record.id,jdbcType=INTEGER},
+		name = #{record.name,jdbcType=VARCHAR},
+		type = #{record.type,jdbcType=VARCHAR},
+		downloadNum = #{record.downloadnum,jdbcType=INTEGER},
+		score = #{record.score,jdbcType=DOUBLE},
+		imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+		introduce = #{record.introduce,jdbcType=VARCHAR},
+		downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
+		gameupdate = #{record.gameupdate,jdbcType=VARCHAR},
+		size = #{record.size,jdbcType=INTEGER},
+		version = #{record.version,jdbcType=VARCHAR},
+		status = #{record.status,jdbcType=INTEGER},
+		url = #{record.url,jdbcType=VARCHAR},
+		imgUrls = #{record.imgurls,jdbcType=VARCHAR},
+		tab = #{record.tab,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.atguigu.mgt.manager.bean.TGames">
+		update t_games
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="downloadnum != null">
+				downloadNum = #{downloadnum,jdbcType=INTEGER},
+			</if>
+			<if test="score != null">
+				score = #{score,jdbcType=DOUBLE},
+			</if>
+			<if test="imgurl != null">
+				imgUrl = #{imgurl,jdbcType=VARCHAR},
+			</if>
+			<if test="introduce != null">
+				introduce = #{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="downloadurl != null">
+				downloadUrl = #{downloadurl,jdbcType=VARCHAR},
+			</if>
+			<if test="gameupdate != null">
+				gameupdate = #{gameupdate,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				size = #{size,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				version = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="imgurls != null">
+				imgUrls = #{imgurls,jdbcType=VARCHAR},
+			</if>
+			<if test="tab != null">
+				tab = #{tab,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.atguigu.mgt.manager.bean.TGames">
+		update t_games
+		set name = #{name,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		downloadNum = #{downloadnum,jdbcType=INTEGER},
+		score = #{score,jdbcType=DOUBLE},
+		imgUrl = #{imgurl,jdbcType=VARCHAR},
+		introduce = #{introduce,jdbcType=VARCHAR},
+		downloadUrl = #{downloadurl,jdbcType=VARCHAR},
+		gameupdate = #{gameupdate,jdbcType=VARCHAR},
+		size = #{size,jdbcType=INTEGER},
+		version = #{version,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		url = #{url,jdbcType=VARCHAR},
+		imgUrls = #{imgurls,jdbcType=VARCHAR},
+		tab = #{tab,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

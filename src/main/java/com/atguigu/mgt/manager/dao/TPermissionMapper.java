@@ -27,6 +27,4 @@ public interface TPermissionMapper {
     int updateByPrimaryKeySelective(TPermission record);
 
     int updateByPrimaryKey(TPermission record);
-    
-    List<TPermission> getRolePermission(@Param("rid")Integer rid);
 }
