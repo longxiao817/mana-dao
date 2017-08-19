@@ -27,4 +27,6 @@ public interface TComentarMapper {
     int updateByPrimaryKeySelective(TComentar record);
 
     int updateByPrimaryKey(TComentar record);
+    
+    List<TComentar> getGameComentar(@Param("gameId")Integer gameId);
 }

@@ -6,6 +6,13 @@
     <result column="userComentar" jdbcType="VARCHAR" property="usercomentar" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
   </resultMap>
+  <select id="getGameComentar" resultMap="BaseResultMap">
+  	SELECT c.* FROM t_comentar c
+	LEFT JOIN t_game_comentar gc ON gc.`comentarId`=c.`id`
+	LEFT JOIN t_games g ON g.`id`=gc.`gameId`
+	WHERE g.`id`=#{gameId}
+	ORDER BY c.`id` DESC 
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

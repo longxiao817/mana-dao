@@ -27,4 +27,6 @@ public interface TReplyMapper {
     int updateByPrimaryKeySelective(TReply record);
 
     int updateByPrimaryKey(TReply record);
+    
+    List<TReply> getComentarReply(@Param("comentarId")Integer comentarId);
 }

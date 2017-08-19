@@ -8,6 +8,12 @@
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+  <select id="getComentarReply" resultMap="BaseResultMap">
+	SELECT r.* FROM t_reply r
+	LEFT JOIN t_comentar c ON c.`id`=r.`comentarId`
+	WHERE c.`id`=#{comentarId}
+	ORDER BY r.`id` DESC   
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

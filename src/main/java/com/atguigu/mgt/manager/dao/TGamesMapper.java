@@ -27,4 +27,6 @@ public interface TGamesMapper {
     int updateByPrimaryKeySelective(TGames record);
 
     int updateByPrimaryKey(TGames record);
+    
+    List<TGames> selectByTab(String tabs);
 }

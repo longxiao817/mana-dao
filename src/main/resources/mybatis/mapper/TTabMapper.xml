@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.mgt.manager.dao.TComentarMapper">
-  <resultMap id="BaseResultMap" type="com.atguigu.mgt.manager.bean.TComentar">
+<mapper namespace="com.atguigu.mgt.manager.dao.TTabMapper">
+  <resultMap id="BaseResultMap" type="com.atguigu.mgt.manager.bean.TTab">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="userComentar" jdbcType="VARCHAR" property="usercomentar" />
-    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="tab" jdbcType="VARCHAR" property="tab" />
   </resultMap>
-  <select id="getGameComentar" resultMap="BaseResultMap">
-  	SELECT c.* FROM t_comentar c
-	LEFT JOIN t_game_comentar gc ON gc.`comentarId`=c.`id`
-	LEFT JOIN t_games g ON g.`id`=gc.`gameId`
-	WHERE g.`id`=#{gameId}
-	ORDER BY c.`id` DESC 
-  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -72,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, userComentar, time
+    id, tab
   </sql>
-  <select id="selectByExample" parameterType="com.atguigu.mgt.manager.bean.TComentarExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.atguigu.mgt.manager.bean.TTabExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_comentar
+    from t_tab
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,67 +83,56 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_comentar
+    from t_tab
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_comentar
+    delete from t_tab
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.atguigu.mgt.manager.bean.TComentarExample">
-    delete from t_comentar
+  <delete id="deleteByExample" parameterType="com.atguigu.mgt.manager.bean.TTabExample">
+    delete from t_tab
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.atguigu.mgt.manager.bean.TComentar">
-    insert into t_comentar (id, userComentar, time
-      )
-    values (#{id,jdbcType=INTEGER}, #{usercomentar,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.atguigu.mgt.manager.bean.TTab">
+    insert into t_tab (id, tab)
+    values (#{id,jdbcType=INTEGER}, #{tab,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.atguigu.mgt.manager.bean.TComentar">
-    insert into t_comentar
+  <insert id="insertSelective" parameterType="com.atguigu.mgt.manager.bean.TTab">
+    insert into t_tab
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="usercomentar != null">
-        userComentar,
-      </if>
-      <if test="time != null">
-        time,
+      <if test="tab != null">
+        tab,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="usercomentar != null">
-        #{usercomentar,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null">
-        #{time,jdbcType=TIMESTAMP},
+      <if test="tab != null">
+        #{tab,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.atguigu.mgt.manager.bean.TComentarExample" resultType="java.lang.Long">
-    select count(*) from t_comentar
+  <select id="countByExample" parameterType="com.atguigu.mgt.manager.bean.TTabExample" resultType="java.lang.Long">
+    select count(*) from t_tab
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_comentar
+    update t_tab
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.usercomentar != null">
-        userComentar = #{record.usercomentar,jdbcType=VARCHAR},
-      </if>
-      <if test="record.time != null">
-        time = #{record.time,jdbcType=TIMESTAMP},
+      <if test="record.tab != null">
+        tab = #{record.tab,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -159,30 +140,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_comentar
+    update t_tab
     set id = #{record.id,jdbcType=INTEGER},
-      userComentar = #{record.usercomentar,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=TIMESTAMP}
+      tab = #{record.tab,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.mgt.manager.bean.TComentar">
-    update t_comentar
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.mgt.manager.bean.TTab">
+    update t_tab
     <set>
-      <if test="usercomentar != null">
-        userComentar = #{usercomentar,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null">
-        time = #{time,jdbcType=TIMESTAMP},
+      <if test="tab != null">
+        tab = #{tab,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.atguigu.mgt.manager.bean.TComentar">
-    update t_comentar
-    set userComentar = #{usercomentar,jdbcType=VARCHAR},
-      time = #{time,jdbcType=TIMESTAMP}
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.mgt.manager.bean.TTab">
+    update t_tab
+    set tab = #{tab,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
