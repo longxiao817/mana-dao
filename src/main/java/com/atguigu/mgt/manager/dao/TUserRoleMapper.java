@@ -1,8 +1,11 @@
 package com.atguigu.mgt.manager.dao;
 
+import com.atguigu.mgt.manager.bean.TRole;
 import com.atguigu.mgt.manager.bean.TUserRole;
 import com.atguigu.mgt.manager.bean.TUserRoleExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TUserRoleMapper {
@@ -27,4 +30,6 @@ public interface TUserRoleMapper {
     int updateByPrimaryKeySelective(TUserRole record);
 
     int updateByPrimaryKey(TUserRole record);
+    
+    
 }

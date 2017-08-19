@@ -2,7 +2,9 @@ package com.atguigu.mgt.manager.dao;
 
 import com.atguigu.mgt.manager.bean.TRole;
 import com.atguigu.mgt.manager.bean.TRoleExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TRoleMapper {
@@ -27,4 +29,6 @@ public interface TRoleMapper {
     int updateByPrimaryKeySelective(TRole record);
 
     int updateByPrimaryKey(TRole record);
+    
+    List<TRole> getUserRole(@Param("uid")Integer uid);
 }
