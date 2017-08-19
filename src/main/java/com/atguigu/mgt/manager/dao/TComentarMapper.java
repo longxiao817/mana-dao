@@ -29,4 +29,6 @@ public interface TComentarMapper {
     int updateByPrimaryKey(TComentar record);
     
     List<TComentar> getGameComentar(@Param("gameId")Integer gameId);
+    
+    List<TComentar> selectComentarByUserId(Integer id);
 }

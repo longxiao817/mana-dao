@@ -29,4 +29,8 @@ public interface TGamesMapper {
     int updateByPrimaryKey(TGames record);
     
     List<TGames> selectByTab(String tabs);
+    
+    TGames getGameByComentarId(Integer id);
+    
+    List<TGames> selectGameByUserId(Integer id);
 }

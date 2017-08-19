@@ -19,6 +19,15 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="user_image" jdbcType="VARCHAR" property="userImage" />
   </resultMap>
+  
+  <select id="getUserByComentarId" resultMap="BaseResultMap">
+		SELECT tu.user_id,tu.user_name,tu.user_image
+		FROM t_users tu
+		LEFT JOIN t_user_comentar tuc ON tu.user_id=tuc.userId
+		LEFT JOIN t_comentar tc ON tc.`id` = tuc.comentarId
+		WHERE tc.`id` = #{id}
+	</select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

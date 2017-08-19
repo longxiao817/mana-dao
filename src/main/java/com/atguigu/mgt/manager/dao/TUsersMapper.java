@@ -27,4 +27,6 @@ public interface TUsersMapper {
     int updateByPrimaryKeySelective(TUsers record);
 
     int updateByPrimaryKey(TUsers record);
+    
+    TUsers getUserByComentarId(Integer id);
 }

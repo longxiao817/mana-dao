@@ -13,6 +13,14 @@
 	WHERE g.`id`=#{gameId}
 	ORDER BY c.`id` DESC 
   </select>
+  <!-- List<TComentar> selectComentarByUserId(Integer id); -->
+	<select id="selectComentarByUserId" resultMap="BaseResultMap">
+		SELECT tc.`id`,tc.`userComentar`,tc.`time`
+		FROM t_comentar tc
+		LEFT JOIN t_user_comentar tuc ON tc.`id` = tuc.comentarId
+		LEFT JOIN t_users tu ON tu.user_id = tuc.userId
+		WHERE tu.user_id = #{id}
+	</select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

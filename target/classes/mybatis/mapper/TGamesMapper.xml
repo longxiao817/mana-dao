@@ -25,7 +25,25 @@
 		(SELECT tt.id FROM t_tab tt WHERE tt.tab LIKE #{tabs}))
   
   </select>
-  
+  <!-- TGames getGameByComentarId(Integer id); -->
+	<select id="getGameByComentarId" resultMap="BaseResultMap">
+		SELECT
+		tg.`id`,tg.`name`,tg.`imgUrl`
+		FROM t_games tg
+		LEFT JOIN t_game_comentar
+		tgc ON tg.`id` = tgc.`gameId`
+		LEFT JOIN t_comentar tc ON tc.`id`=
+		tgc.`comentarId`
+		WHERE tc.`id` = #{id}
+	</select>
+	<!-- List<TGames> selectGameByUserId(Integer id); -->
+	<select id="selectGameByUserId" resultMap="BaseResultMap">
+		SELECT tg.`id`,tg.`name`,tg.`imgUrl`
+		FROM t_games tg
+		LEFT JOIN t_user_games tug ON tg.`id` = tug.gameId
+		LEFT JOIN t_users tu ON tu.user_id = tug.userId
+		WHERE tu.user_id = #{id}
+	</select>
   
   <sql id="Example_Where_Clause">
     <where>
