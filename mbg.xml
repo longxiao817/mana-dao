@@ -41,10 +41,10 @@
 		<!-- 只要是数据库对应的pojo，我们都以T开头 -->
 		<!-- 指定要逆向的每一张表,用户表 -->
 		
- 	 	<!--  <table tableName="t_cert" domainObjectName="TCert"></table>
+
+ 	 	 <table tableName="t_cert" domainObjectName="TCert"></table>
          <table tableName="t_comentar" domainObjectName="TComentar"></table>
          <table tableName="t_game_comentar" domainObjectName="TGameComentar"></table>
-         <table tableName="t_games" domainObjectName="TGames"></table>
          <table tableName="t_reply" domainObjectName="TReply"></table>
          <table tableName="t_type" domainObjectName="TType"></table>
        	 <table tableName="t_type_cert" domainObjectName="TTypeCert"></table>
@@ -59,8 +59,9 @@
 	 	 <table tableName="t_role_permission" domainObjectName="TRolePermission"></table>
 	 	 <table tableName="t_role" domainObjectName="TRole"></table>
 	 	 <table tableName="t_user_role" domainObjectName="TUserRole"></table>  
-  		<table tableName="t_games" domainObjectName="TGames"></table> -->
+  		<table tableName="t_games" domainObjectName="TGames"></table>
   		<table tableName="t_tab" domainObjectName="TTab"></table>
   		<table tableName="t_game_tab" domainObjectName="TGameTab"></table>
+		<table tableName="t_user_ticket" domainObjectName="TUserTicket"></table>
 	</context>
 </generatorConfiguration>

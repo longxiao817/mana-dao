@@ -5,6 +5,12 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+    <select id="getUserRole" resultMap="BaseResultMap">
+ 	SELECT * FROM t_role r
+	LEFT JOIN t_user_role ur ON ur.`roleid`=r.`id`
+	LEFT JOIN t_users u ON u.`user_id`=ur.`userid`
+	WHERE u.`user_id`=#{uid} 
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
