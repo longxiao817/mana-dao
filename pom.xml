@@ -12,6 +12,7 @@
 			<artifactId>mana-pojo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
 		<!-- 和所有数据库有关的放在这一层 -->
 		<!-- mybatis配置 -->
 		<dependency>
