@@ -8,12 +8,6 @@
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="url" jdbcType="VARCHAR" property="url" />
   </resultMap>
-  <select id="getRolePermission" resultMap="BaseResultMap">
- 	 SELECT * FROM t_permission p
-	LEFT JOIN t_role_permission rp ON rp.`permissionid`=p.`id`
-	LEFT JOIN t_role r ON r.`id`=rp.`roleid`
-	WHERE r.`id`=#{rid} 
-  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

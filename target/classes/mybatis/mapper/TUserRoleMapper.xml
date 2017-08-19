@@ -6,7 +6,6 @@
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="roleid" jdbcType="INTEGER" property="roleid" />
   </resultMap>
-  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

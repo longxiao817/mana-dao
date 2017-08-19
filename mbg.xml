@@ -9,7 +9,7 @@
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
-		
+
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/mgt" userId="root"
 			password="123456">
@@ -40,6 +40,7 @@
 
 		<!-- 只要是数据库对应的pojo，我们都以T开头 -->
 		<!-- 指定要逆向的每一张表,用户表 -->
+
 		
 
  	 	 <table tableName="t_cert" domainObjectName="TCert"></table>
@@ -63,5 +64,6 @@
   		<table tableName="t_tab" domainObjectName="TTab"></table>
   		<table tableName="t_game_tab" domainObjectName="TGameTab"></table>
 		<table tableName="t_user_ticket" domainObjectName="TUserTicket"></table>
+
 	</context>
 </generatorConfiguration>

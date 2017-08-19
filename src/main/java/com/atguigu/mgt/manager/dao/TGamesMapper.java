@@ -2,7 +2,9 @@ package com.atguigu.mgt.manager.dao;
 
 import com.atguigu.mgt.manager.bean.TGames;
 import com.atguigu.mgt.manager.bean.TGamesExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TGamesMapper {
@@ -27,10 +29,15 @@ public interface TGamesMapper {
     int updateByPrimaryKeySelective(TGames record);
 
     int updateByPrimaryKey(TGames record);
+
     
     List<TGames> selectByTab(String tabs);
     
     TGames getGameByComentarId(Integer id);
     
     List<TGames> selectGameByUserId(Integer id);
+
+
+	List<TGames> getAllGamesByUserId(Integer userId);
+
 }

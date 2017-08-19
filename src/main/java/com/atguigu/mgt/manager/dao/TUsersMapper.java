@@ -28,5 +28,29 @@ public interface TUsersMapper {
 
     int updateByPrimaryKey(TUsers record);
     
+
     TUsers getUserByComentarId(Integer id);
+
+    /**
+     * 通过令牌及用户Id更新用户密码
+     * @param passwd
+     * @param token
+     * @return
+     */
+    int updatePswdByToken(@Param("passwd")String passwd, @Param("token")String token);
+    
+    /**
+     * 获取所有的fans
+     * @param userId
+     * @return
+     */
+    List<TUsers> getAllFansByUserId(@Param("userId")Integer userId);
+    
+    /**
+     * 获取所有的关注
+     * @param userId
+     * @return
+     */
+    List<TUsers> getAllFocusByUserId(@Param("userId")Integer userId);
+
 }

@@ -27,4 +27,6 @@ public interface TCertMapper {
     int updateByPrimaryKeySelective(TCert record);
 
     int updateByPrimaryKey(TCert record);
+    
+    List<TCert> getCertsByUserId(@Param("userId")Integer userId);
 }
