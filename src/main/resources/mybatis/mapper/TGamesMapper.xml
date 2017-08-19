@@ -10,12 +10,13 @@
     <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="downloadUrl" jdbcType="VARCHAR" property="downloadurl" />
-    <result column="update" jdbcType="VARCHAR" property="update" />
+    <result column="gameupdate" jdbcType="VARCHAR" property="gameupdate" />
     <result column="size" jdbcType="INTEGER" property="size" />
     <result column="version" jdbcType="VARCHAR" property="version" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="imgUrls" jdbcType="VARCHAR" property="imgurls" />
+    <result column="tab" jdbcType="VARCHAR" property="tab" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, type, downloadNum, score, imgUrl, introduce, downloadUrl, update, size, 
-    version, status, url, imgUrls
+    id, name, type, downloadNum, score, imgUrl, introduce, downloadUrl, gameupdate, size, 
+    version, status, url, imgUrls, tab
   </sql>
   <select id="selectByExample" parameterType="com.atguigu.mgt.manager.bean.TGamesExample" resultMap="BaseResultMap">
     select
@@ -112,14 +113,14 @@
   <insert id="insert" parameterType="com.atguigu.mgt.manager.bean.TGames">
     insert into t_games (id, name, type, 
       downloadNum, score, imgUrl, 
-      introduce, downloadUrl, update, 
+      introduce, downloadUrl, gameupdate, 
       size, version, status, 
-      url, imgUrls)
+      url, imgUrls, tab)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{downloadnum,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, #{imgurl,jdbcType=VARCHAR}, 
-      #{introduce,jdbcType=VARCHAR}, #{downloadurl,jdbcType=VARCHAR}, #{update,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{downloadurl,jdbcType=VARCHAR}, #{gameupdate,jdbcType=VARCHAR}, 
       #{size,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{url,jdbcType=VARCHAR}, #{imgurls,jdbcType=VARCHAR})
+      #{url,jdbcType=VARCHAR}, #{imgurls,jdbcType=VARCHAR}, #{tab,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.atguigu.mgt.manager.bean.TGames">
     insert into t_games
@@ -148,8 +149,8 @@
       <if test="downloadurl != null">
         downloadUrl,
       </if>
-      <if test="update != null">
-        update,
+      <if test="gameupdate != null">
+        gameupdate,
       </if>
       <if test="size != null">
         size,
@@ -165,6 +166,9 @@
       </if>
       <if test="imgurls != null">
         imgUrls,
+      </if>
+      <if test="tab != null">
+        tab,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -192,8 +196,8 @@
       <if test="downloadurl != null">
         #{downloadurl,jdbcType=VARCHAR},
       </if>
-      <if test="update != null">
-        #{update,jdbcType=VARCHAR},
+      <if test="gameupdate != null">
+        #{gameupdate,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
         #{size,jdbcType=INTEGER},
@@ -209,6 +213,9 @@
       </if>
       <if test="imgurls != null">
         #{imgurls,jdbcType=VARCHAR},
+      </if>
+      <if test="tab != null">
+        #{tab,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -245,8 +252,8 @@
       <if test="record.downloadurl != null">
         downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
       </if>
-      <if test="record.update != null">
-        update = #{record.update,jdbcType=VARCHAR},
+      <if test="record.gameupdate != null">
+        gameupdate = #{record.gameupdate,jdbcType=VARCHAR},
       </if>
       <if test="record.size != null">
         size = #{record.size,jdbcType=INTEGER},
@@ -263,6 +270,9 @@
       <if test="record.imgurls != null">
         imgUrls = #{record.imgurls,jdbcType=VARCHAR},
       </if>
+      <if test="record.tab != null">
+        tab = #{record.tab,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -278,12 +288,13 @@
       imgUrl = #{record.imgurl,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
       downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
-      update = #{record.update,jdbcType=VARCHAR},
+      gameupdate = #{record.gameupdate,jdbcType=VARCHAR},
       size = #{record.size,jdbcType=INTEGER},
       version = #{record.version,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       url = #{record.url,jdbcType=VARCHAR},
-      imgUrls = #{record.imgurls,jdbcType=VARCHAR}
+      imgUrls = #{record.imgurls,jdbcType=VARCHAR},
+      tab = #{record.tab,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -312,8 +323,8 @@
       <if test="downloadurl != null">
         downloadUrl = #{downloadurl,jdbcType=VARCHAR},
       </if>
-      <if test="update != null">
-        update = #{update,jdbcType=VARCHAR},
+      <if test="gameupdate != null">
+        gameupdate = #{gameupdate,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
         size = #{size,jdbcType=INTEGER},
@@ -330,6 +341,9 @@
       <if test="imgurls != null">
         imgUrls = #{imgurls,jdbcType=VARCHAR},
       </if>
+      <if test="tab != null">
+        tab = #{tab,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -342,12 +356,13 @@
       imgUrl = #{imgurl,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       downloadUrl = #{downloadurl,jdbcType=VARCHAR},
-      update = #{update,jdbcType=VARCHAR},
+      gameupdate = #{gameupdate,jdbcType=VARCHAR},
       size = #{size,jdbcType=INTEGER},
       version = #{version,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
-      imgUrls = #{imgurls,jdbcType=VARCHAR}
+      imgUrls = #{imgurls,jdbcType=VARCHAR},
+      tab = #{tab,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
